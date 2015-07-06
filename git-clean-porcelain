@@ -1,29 +1,25 @@
 #!/usr/bin/env bash
 
-modified_files_n=0
-while IFS= read line
-do
-    echo "$line"
-    modified_files[ $modified_files_n ]="$line"
-    (( modified_files_n++ ))
+declare -A FILE_STATUS
+
+while IFS= read line; do
+    status=${line:0:2}
+    file=${line:3}
+    FILE_STATUS[$file]="$status"
 done < <(git status --porcelain)
 
-function find_modified_file {
-    local i=0
-    while [[ $i < $modified_files_n ]]; do
-        if [ "${modified_files[ $i ]:3}" == "$1" ]; then
-            echo "${modified_files[ $i ]}"
-            return 0
-        fi
-        (( i++ ))
-    done
-    return 1
-}
-
-git ls-files | while read -r filepath ; do
-    filestatus=$(find_modified_file "$filepath")
-    if [[ $? ]]; then
-        filestatus="   $filepath"
+while IFS= read line; do
+    if [ ! ${FILE_STATUS[$line]+_} ]; then
+        FILE_STATUS[$line]="  "
     fi
-    echo "$filestatus"
+done < <(git ls-files)
+
+files_sorted=( $(
+    for file in "${!FILE_STATUS[@]}"; do
+        echo "$file"
+    done | sort)
+)
+
+for file in "${files_sorted[@]}"; do
+    echo "${FILE_STATUS[$file]} $file"
 done
