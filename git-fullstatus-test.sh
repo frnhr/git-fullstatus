@@ -28,7 +28,7 @@ after() {
 test_equal() {
     r="$(printf "$1")"
     e="$(printf "$2")"
-    msg="
+    _="
 
 
 
