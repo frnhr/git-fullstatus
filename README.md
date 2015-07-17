@@ -22,18 +22,25 @@ In a git repository:
 
 ## Output format
 
-Output uses the same format as `git status --porcelain`. Unmodified files are renderes with `  ` as `XY`
-(see git help status) for details.
+Output uses the same format as `git status --porcelain`. Unmodified files are listed with `  ` *(double space)* as `XY`. See git help status for details.
 
 ## Testing
 
-(Roundup)[1] is needed to run tests.
+[Roundup][1] is needed to run tests.
 
-Simply cd to the directory containing `git-fullstatus` and run 
+Simply `cd` to the directory containing `git-fullstatus-test.sh` and run
+
+    $ roundup
+
+## Caveats
+
+ * Not really working with non-ascii characters in file names.
+ * Not thoroughly tested with respect to different possible Git statuses, mainly when files are renamed. So no guarantees.
+
 
 ## TODO
 
- * implement quicksearch for finding files in the list
  * support different command line options and formats (non-porcelain, "--short" and "--long" mode, "--ignored", etc.)
  
- [1] https://github.com/bmizerany/roundup/blob/master/INSTALLING#files
+ 
+[1]: 	https://github.com/bmizerany/roundup/blob/master/INSTALLING#files
