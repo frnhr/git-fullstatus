@@ -43,4 +43,13 @@ Simply `cd` to the directory containing `git-fullstatus-test.sh` and run
  * support different command line options and formats (non-porcelain, "--short" and "--long" mode, "--ignored", etc.)
  
  
+## Kudos
+
+Original idea / inspiration:  
+@roger-dueck via http://stackoverflow.com/a/22647655/236195
+
+Quicksort implementation:
+@gniourf_gniourf via http://stackoverflow.com/a/30576368/236195
+  
+  
 [1]: 	https://github.com/bmizerany/roundup/blob/master/INSTALLING#files
